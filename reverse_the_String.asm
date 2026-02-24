@@ -1,0 +1,27 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+STR DB "NEWWORLD"
+.CODE
+MAIN PROC
+    MOV AX,@DATA
+    MOV DS,AX
+    MOV SI,OFFSET STR
+    MOV CX,8
+    LOOP1:
+    MOV BX,[SI]
+    PUSH BX
+    INC SI
+    LOOP LOOP1 
+    MOV CX,8
+    LOOP2:  
+    POP DX
+    MOV AH,02H
+    INT 21H
+    LOOP LOOP2:
+    MOV AX,4C00H
+    INT 21H
+ENDP
+END MAIN
+    
+    
